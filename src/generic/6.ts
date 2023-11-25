@@ -13,9 +13,14 @@ type User = {
   email: string;
   password: string;
 }
-
-function createOrUpdateUser(initialValues: User) {
+type SomeFieldUser = Pick <User, 'email' |'password'> 
+function createOrUpdateUser(initialValues: SomeFieldUser): object {
   // Оновлення користувача
+  const updateUser = {
+    email: initialValues.email,
+    password: initialValues.password,
+  }
+  return updateUser
 }
 
 createOrUpdateUser({ email: 'user@mail.com', password: 'password123' });
